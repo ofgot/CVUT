@@ -1,0 +1,118 @@
+import random
+
+class Dealer:
+    def __init__(self):
+      self.deck = [
+        '♥A', '♥7', '♥8', '♥9', '♥10', '♥J', '♥Q', '♥K'
+        '♦A', '♦7', '♦8', '♦9', '♦10', '♦J', '♦Q', '♦K',
+        '♣A', '♣7', '♣8', '♣9', '♣10', '♣J', '♣Q', '♣K',
+        '♠A', '♠7', '♠8', '♠9', '♠10', '♠J', '♠Q', '♠K'
+      ]
+
+      self.players = []
+
+    def shuffle(self):
+        deck = self.deck.copy()
+        random.shuffle(deck)
+        return deck
+
+    def deal(self, n):
+        arm = []
+        deck = self.shuffle()
+        print(deck)
+        for num in range(n):
+            if len(deck) == 0:
+                return []
+            num = deck.pop(0)
+            arm.append(num)
+        return arm
+
+    def addPlayer(self, player):
+        self.players.append(player)
+
+    def removePlayer(self, player):
+        self.players.remove(player)
+
+    def startRound(self):
+        GAME = True
+        while GAME == True:
+            print('--- rozdvam  ---')
+            
+
+
+    def announceWinner(self):
+        if len(self.players) == 0:
+            return
+
+
+class Player:
+    def __init__(self, name, strategy):
+        self.name = name
+        self.strategy = strategy
+        self.hand = []
+
+    def getHandValue(self):
+        points = 0
+        for card in self.hand:
+            if card[1] == 'J' or card[1] == 'K' or card[1] == 'Q':
+                points += 1
+            elif card[1] == '7':
+                points += 7
+            elif card[1] == '8':
+                points += 8
+            elif card[1] == '9':
+                points += 9
+            elif card[1] == '10':
+                points += 10
+            elif card[1] == 'A':
+                points += 11
+        return points
+
+
+    def acceptCard(self, cards):
+        self.hand += cards
+        print(self.hand)
+
+
+    def needsCard(self):
+        if self.strategy == 'Cautious':
+            if self.getHandValue() > 10:
+                return False
+            else:
+                return True
+        elif self.strategy == 'Bold':
+            if self.getHandValue() > 15:
+                return False
+            else:
+                return True
+        elif self.strategy == 'Human':
+            res = input(self.name + ' ma nyni karty: ' + str(self.hand) + ' v hodnote ' +
+                  str(self.getHandValue()) + ', chce dalsi(A/N)?: ')
+
+            if res == 'A':
+                return True
+            elif res == 'N':
+                return False
+
+
+# TEST DEAL
+# dealer = Dealer()
+# dealer.shuffle()
+# myHand = dealer.deal(5)
+# print(myHand)
+# dealer.shuffle()
+# myHand = dealer.deal(3)
+# print(myHand)
+
+
+
+# TEST GAME
+# newDealer = Dealer()
+# player1 = Player('Čeněk Člověčí', 'Human')
+# player2 = Player('Vilda Vopatrný', 'Cautious')
+# player3 = Player('Olda Odvážný','Bold')
+# newDealer.addPlayer(player1)
+# newDealer.addPlayer(player2)
+# newDealer.addPlayer(player3)
+# newDealer.shuffle()
+# newDealer.startRound()
