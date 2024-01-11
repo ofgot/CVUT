@@ -1,2 +1,2 @@
 # CVUT
-Here I post all my works from university
+ZAL(Introduction to programming).Here I post homeworks from 1 semester at CVUT. 
