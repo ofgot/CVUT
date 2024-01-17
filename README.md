@@ -1,2 +1,2 @@
 # CVUT
-ZAL(Introduction to programming). Here I post my homeworks from 1 semester at CVUT. Mainly contain python.
+ZAL (Introduction to programming). Mainly contain python exercises. Include exercises with different types of sorting, binary search tree and Dijkstra's algorithm implementation + work with recursion and implementation of some games(black-jack, lucky-tickets).
